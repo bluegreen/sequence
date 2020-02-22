@@ -7,6 +7,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\SequenceType;
 
 /**
  * Description of SequenceController
@@ -17,6 +18,22 @@ class SequenceController extends AbstractController
 {
     public function start(Request $request): Response
     {
-        return $this->render('sequence/start.html.twig');
+        $form = $this->createForm(SequenceType::class);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                var_dump($form->getData());
+            } catch (\Exception $e) {
+                $this->addFlash(
+                    'warning',
+                    $e->getMessage()
+                );
+            }            
+        }
+        
+        return $this->render('sequence/start.html.twig', [
+            'form' => $form->createView(),
+        ]);        
     }
 }
