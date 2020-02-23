@@ -7,16 +7,16 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * Description of ContainsNumberInArrayValidator
+ * Description of NumberInArrayValidator
  *
  * @author Radosław Skrzypczak <radoslaw.skrzypczak@pearfly.pl>
  */
-class ContainsNumberInArrayValidator extends ConstraintValidator
+class NumberInArrayValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof ContainsNumberInArray) {
-            throw new UnexpectedTypeException($constraint, ContainsNumberInArray::class);
+        if (!$constraint instanceof NumberInArray) {
+            throw new UnexpectedTypeException($constraint, NumberInArray::class);
         }
 
         if (null === $value || '' === $value) {

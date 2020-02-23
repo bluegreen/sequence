@@ -7,8 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\Form\DataTransformer\StringToArrayTransformer;
-use Symfony\Component\Validator\Constraints\NotNull;
-use App\Validator\Constraints\ContainsNumberInArray;
+use App\Validator\Constraints\NumberInArray;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 
@@ -43,7 +42,7 @@ class SequenceType extends AbstractType
                 new NotBlank([
                     'message' => 'Wartość nie powinna być pusta.'
                 ]),
-                new ContainsNumberInArray([
+                new NumberInArray([
                     'min' => self::MIN_VALUE,
                     'max' => self::MAX_VALUE
                 ])
