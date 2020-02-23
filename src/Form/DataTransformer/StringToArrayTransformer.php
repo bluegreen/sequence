@@ -3,14 +3,13 @@
 namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Description of StringToArrayTransformer
  *
  * @author Radosław Skrzypczak <radoslaw.skrzypczak@pearfly.pl>
  */
-class StringToArrayTransformer implements DataTransformerInterface
+final class StringToArrayTransformer implements DataTransformerInterface
 {
     public function transform($value)
     {
