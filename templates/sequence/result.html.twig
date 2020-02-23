@@ -39,17 +39,21 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th>1</th>
-                            <td>1</td>
-                          </tr>
-                          <tr>
-                            <th>2</th>
-                            <td>2</td>
+                            {% for input, output in sequenceResult %}
+                                <tr>
+                                  <th>{{ input }}</th>
+                                  <td>{{ output }}</td>
+                                </tr>                                
+                            {% endfor %}
                           </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 text-right">
+                <a href="{{ path('sequence') }}" class="btn btn-lg  btn-primary">Wróc do zabawy</a>
             </div>
         </div>
     </div>
