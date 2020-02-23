@@ -10,6 +10,7 @@ use App\Form\DataTransformer\StringToArrayTransformer;
 use Symfony\Component\Validator\Constraints\NotNull;
 use App\Validator\Constraints\ContainsNumberInArray;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
 
 /**
  * Description of SequenceType
@@ -39,9 +40,6 @@ class SequenceType extends AbstractType
                 'cols'      => 20
             ],
             'constraints' => [
-                new NotNull([
-                    'message' => 'Wartość nie powinna być pusta.'
-                ]),
                 new NotBlank([
                     'message' => 'Wartość nie powinna być pusta.'
                 ]),
@@ -55,8 +53,11 @@ class SequenceType extends AbstractType
         $builder->get('inputData')
             ->addModelTransformer($this->transformer);        
         
-        $builder->add('save', SubmitType::class, [
+        $builder->add('btnCalculate', SubmitType::class, [
             'label'=> 'Oblicz'
+        ]);
+        $builder->add('btnReset', ResetType::class, [
+            'label'=> 'Wyczyść dane'
         ]);
     }
 }

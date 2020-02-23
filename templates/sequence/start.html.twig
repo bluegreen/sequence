@@ -6,7 +6,19 @@
     <div class="container mt-5">
         {% include './flashMessages.html.twig' %}
         {{ form_start(form) }}
-            {{ form_widget(form) }}
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                {{ form_row(form.inputData) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 text-left">
+                {{ form_row(form.btnReset) }}
+            </div>
+            <div class="col-md-6 col-sm-12 text-right">
+                {{ form_row(form.btnCalculate) }}
+            </div>
+        </div>
         {{ form_end(form) }}        
     </div>
 {% endblock %}

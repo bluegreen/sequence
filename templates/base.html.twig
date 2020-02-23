@@ -24,17 +24,27 @@
                     border-color: #7AA12E;
                 }
 
-                .btn-primary:hover {
+                .btn-primary:hover,
+                .btn-primary:focus, 
+                .btn-primary.focus{
                   color: #fff;
                   background-color: #0bb0da;
                   border-color: #0bb0da;
                 }
+                
+                .btn-secondary {
+                    color: #fff;
+                    background-color: #ccc;
+                    border-color: #ccc;
+                }
 
-                .btn-primary:focus, .btn-primary.focus {
+                .btn-secondary:hover,
+                .btn-secondary:focus, 
+                .btn-secondary.focus{
                   color: #fff;
-                  background-color: #0bb0da;
-                  border-color: #0bb0da;
-                }                
+                  background-color: #999;
+                  border-color: #999;
+                }
             </style>            
         {% endblock %}
     </head>
