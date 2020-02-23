@@ -23,7 +23,9 @@ class SequenceController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                var_dump($form->getData());
+                return $this->render('sequence/result.html.twig',[
+                    'sequence' => $form->getData(),
+                ]);                
             } catch (\Exception $e) {
                 $this->addFlash(
                     'warning',

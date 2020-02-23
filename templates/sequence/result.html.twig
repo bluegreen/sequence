@@ -1,0 +1,56 @@
+{% extends './base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .table-primary tbody+tbody, 
+        .table-primary td, 
+        .table-primary th, 
+        .table-primary thead th {
+            border-color: #0bb0da;
+            color:#fff;
+        }        
+        
+        .table-primary, 
+        .table-primary>td, 
+        .table-primary>th,
+        .table-hover .table-primary:hover,
+        .table-hover .table-primary:hover > td,
+        .table-hover .table-primary:hover > th {
+            background-color: #0bb0da;
+        }        
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        {% include './flashMessages.html.twig' %}
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <p class="lead">Wynik obliczeń</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr class="table-primary">
+                            <th>Dane wejściowe</th>
+                            <th>Dane wyjściowe</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>1</th>
+                            <td>1</td>
+                          </tr>
+                          <tr>
+                            <th>2</th>
+                            <td>2</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
