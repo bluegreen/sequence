@@ -11,6 +11,8 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 final class StringToArrayTransformer implements DataTransformerInterface
 {
+    const TRIM_CHARACTER_MASKU = " \t\n\r\0\x0B";
+    
     public function transform($value)
     {
         if (null === $value) {
@@ -30,12 +32,10 @@ final class StringToArrayTransformer implements DataTransformerInterface
             return '';
         }
         
-        $characterMask = " \t\n\r\0\x0B";
+        $data = explode("\n", trim($value, self::TRIM_CHARACTER_MASKU));
         
-        $data = explode("\n", trim($value, $characterMask));
-        
-        return array_map(function($item) use ($characterMask) {
-            return trim($item, $characterMask);
+        return array_map(function($item) {
+            return trim($item, self::TRIM_CHARACTER_MASKU);
         }, $data);
     }    
 }
