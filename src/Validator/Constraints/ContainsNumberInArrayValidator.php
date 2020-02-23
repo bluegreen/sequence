@@ -1,13 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 /**
  * Description of ContainsNumberInArrayValidator
@@ -31,17 +28,39 @@ class ContainsNumberInArrayValidator extends ConstraintValidator
                 ->addViolation();
         }
 
-        foreach($value as $rowData) {
-            if (!is_numeric($rowData)) {
-                $this->context->buildViolation($constraint->invalidMessage)
-                    ->setParameter('{{ value }}', $this->formatValue($rowData, self::PRETTY_DATE))
+        $min = $constraint->min;
+        $max = $constraint->max;
+        
+        $hasLowerLimit = null !== $min;
+        $hasUpperLimit = null !== $max;
+        
+        foreach($value as $rowValue) {
+            if (null === $rowValue || '' === $rowValue) {
+                $this->context->buildViolation($constraint->nullOrBlankMessage)
+                    ->setParameter('{{ value }}', $rowValue)
                     ->addViolation();
+
+                return;                
+            }
+            
+            if (!is_numeric($rowValue)) {
+                $this->context->buildViolation($constraint->invalidMessage)
+                    ->setParameter('{{ value }}', $rowValue)
+                    ->addViolation();
+
+                return;
+            }
+            
+            if ($hasLowerLimit && $hasUpperLimit && ($rowValue < $min || $rowValue > $max)) {
+                $violationBuilder = $this->context->buildViolation($constraint->notInRangeMessage)
+                    ->setParameter('{{ min }}', $min)
+                    ->setParameter('{{ max }}', $max);
+
+                $violationBuilder->addViolation();
 
                 return;
             }            
         }
         
-        //TODO
-        //- dodać obsługę zakresow bazując na Range
     }
 }

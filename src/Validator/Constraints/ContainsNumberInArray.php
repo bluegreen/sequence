@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
@@ -13,5 +11,9 @@ use Symfony\Component\Validator\Constraint;
  */
 class ContainsNumberInArray extends Constraint
 {
-    public $invalidMessage = 'The string "{{ value }}" contains an illegal character: it can only contain letters or numbers.';
+    public $notInRangeMessage = 'Wprowadzona wartość powinna mieścić się w przedziale od {{ min }} do {{ max }}.';
+    public $invalidMessage = 'Wartość "{{ value }}" powinna być liczbą.';
+    public $nullOrBlankMessage = 'Wartość "{{ value }}" nie powinna być pusta.';
+    public $min;
+    public $max;    
 }

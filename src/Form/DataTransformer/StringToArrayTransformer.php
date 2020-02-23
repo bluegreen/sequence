@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
@@ -28,12 +26,9 @@ class StringToArrayTransformer implements DataTransformerInterface
         if (!$value) {
             return;
         }
-
+        
         if (null === $value) {
-            throw new TransformationFailedException(sprintf(
-                'An issue with number "%s" does not exist!',
-                $value
-            ));
+            return '';
         }
         
         $characterMask = " \t\n\r\0\x0B";
