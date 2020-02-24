@@ -8,6 +8,7 @@ Installation
 [Install Composer](https://getcomposer.org/download/), which is used to install PHP packages.
 
 ```
+git clone https://github.com/bluegreen/sequence.git project_name
 cd project_name
 composer install
 ``` 
